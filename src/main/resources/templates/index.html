@@ -24,6 +24,12 @@
     <input type="submit" value="Zarezerwuj"/>
 
 </form>
+
+<a th:if="${reservations.hasNext()}"  th:href="@{'/'+ ${reservations.getNumber()+1}}">Nastepna</a>
+
+<a th:if="${reservations.hasPrevious()}"  th:href="@{'/'+ ${reservations.getNumber()-1}}">Poprzednia</a>
+
+
 <table>
     <tr>
         <th>Imie</th>
@@ -31,7 +37,7 @@
         <th>Data</th>
         <th>Adres</th>
     </tr>
-<th:block th:each="reservation : ${reservations}">
+<th:block th:each="reservation : ${reservations.getContent()}">
     <tr>
     <th th:text="${reservation.name}"></th>
     <th th:text="${reservation.lastname}"></th>
